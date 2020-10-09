@@ -1,0 +1,50 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
+import Create from '../views/Create.vue'
+import Edit from '../views/Edit.vue'
+import Notfound from '../views/Notfound.vue'
+
+
+Vue.use(VueRouter)
+
+const routes = [
+  {
+    path: "/",
+    redirect: '/home'
+  },
+  {
+   path: '/home',
+   name: 'home',
+   component: Home
+  },
+  {
+    path: '/create',
+    name: 'create',
+    component: Create
+  },
+  {
+    path: '/edit',
+    name: 'edit',
+    component: Edit
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: Notfound,
+    props: true
+  },
+  {
+    path: '*',
+    redirect: { name: '404', params: { resource: 'page' } }
+  }
+
+]
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+})
+
+export default router
